@@ -20,48 +20,42 @@
     ></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app-javascript">
+      <p>Total: <span id="total"></span></p>
+      <p>Preço: R$ <span id="preco"></span></p>
+      <button id="button">Comprar</button>
+    </div>
+    <script type="application/javascript">
+      const total = document.getElementById("total");
+      const preco = document.getElementById("preco");
+      const button = document.getElementById("button");
 
+      let contador = 1;
+      function atualizarValores(contador) {
+        total.innerText = contador;
+        preco.innerText = contador * 250;
+      }
+      atualizarValores(contador);
+      function handleClick() {
+        contador++;
+        atualizarValores(contador);
+      }
+      button.addEventListener("click", handleClick);
+    </script>
+
+    <div id="app-react"></div>
     <script type="text/babel">
-      const Compras = () => {
-        const [contador, setContador] = React.useState(0);
-        function comprar() {
-          setContador(contador + 1);
-        }
+      const Comprar = () => {
+        const [contador, setContador] = React.useState(1);
         return (
           <div>
-            <button onClick={comprar}>Comprar</button>
             <p>Total: {contador}</p>
             <p>Preço: R$ {contador * 250}</p>
+            <button onClick={() => setContador(contador + 1)}>Comprar</button>
           </div>
         );
       };
-
-      const Button = () => {
-        function handleClick(event) {
-          console.log(event.target.innerText);
-        }
-
-        return <button onClick={handleClick}>Comprar Agora</button>;
-      };
-
-      const Titulo = () => {
-        return <h1>Meu App</h1>;
-      };
-
-      const App = () => {
-        return (
-          <div>
-            <Compras />
-            <Titulo />
-            <div>
-              Compre agora isso
-              <Button />
-            </div>
-          </div>
-        );
-      };
-      ReactDOM.render(<App />, document.getElementById("app"));
+      ReactDOM.render(<Comprar />, document.getElementById("app-react"));
     </script>
   </body>
 </html>
