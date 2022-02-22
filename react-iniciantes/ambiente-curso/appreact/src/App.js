@@ -52,7 +52,7 @@ const App = () => {
           </span>
         </p>
         <p>Total gasto : R$ {somaTotal()}</p>
-        <p>{somaTotal() > 10000 ? "Você está gastando muito" : ""}</p>
+        {somaTotal() > 10000 ? <p>Você está gastando muito</p> : ''}
       </div>
     </>
   );
