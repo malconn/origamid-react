@@ -1,60 +1,22 @@
 import React from "react";
 
-// Mostre os dados da aplicação, como aprensetado no vídeo
-// Não utilize CSS externo, use o style para mudar as cores
-// Se a situação estiver ativa pinte de verde, inativa vermelho
-// Se o gasto for maior que 10000 mostre uma mensagem
-const luana = {
-  cliente: "Luana",
-  idade: 27,
-  compras: [
-    { nome: "Notebook", preco: "R$ 2500" },
-    { nome: "Geladeira", preco: "R$ 3000" },
-    { nome: "Smartphone", preco: "R$ 1500" },
-  ],
-  ativa: true,
-};
-
-const mario = {
-  cliente: "Mario",
-  idade: 31,
-  compras: [
-    { nome: "Notebook", preco: "R$ 2500" },
-    { nome: "Geladeira", preco: "R$ 3000" },
-    { nome: "Smartphone", preco: "R$ 1500" },
-    { nome: "Guitarra", preco: "R$ 3500" },
-  ],
-  ativa: false,
-};
-
 const App = () => {
-  const dados = mario;
-
-  let totalPreco = [];
-
-  const totalGasto = dados.compras.map((item) => {
-    totalPreco.push(Number(item.preco.slice(2).trim()));
-  });
-
-  const somaTotal = () => {
-    return totalPreco.reduce((anterior, proximo) => anterior + proximo, 0);
-  };
+  const livros = [
+    { nome: "A Game of Thrones", ano: 1996 },
+    { nome: "A Clash of Kings", ano: 1998 },
+    { nome: "A Storm of Swords", ano: 2000 },
+  ];
 
   return (
-    <>
-      <div>
-        <p>Nome: {dados.cliente}</p>
-        <p>Idade: {dados.idade}</p>
-        <p>
-          Situação:{" "}
-          <span style={{ color: dados.ativa ? "green" : "red" }}>
-            {dados.ativa ? "Ativa" : "Inativa"}
-          </span>
-        </p>
-        <p>Total gasto : R$ {somaTotal()}</p>
-        {somaTotal() > 10000 ? <p>Você está gastando muito</p> : ''}
-      </div>
-    </>
+    <ul>
+      {livros
+        .filter(({ ano }) => ano >= 1998)
+        .map(({ nome, ano }) => (
+          <li key={nome}>
+            {nome},{ano}
+          </li>
+        ))}
+    </ul>
   );
 };
 
