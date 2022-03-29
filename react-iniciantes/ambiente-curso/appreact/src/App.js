@@ -1,14 +1,24 @@
 import React from "react";
+import Footer from "./Footer";
+import Form from "./Form/Form";
+import Header from "./Header";
 
-const App = () => {
-  function handleScroll(event) {
-    console.log(event);
+const Teste = () => {
+  const active = true;
+  if (active) {
+    return <p>Teste</p>;
+  } else {
+    return null;
   }
-  window.addEventListener("scroll", handleScroll);
+};
+const App = () => {
   return (
-    <div style={{ minHeight: "100vh" }}>
-      <button onClick={(event) => console.log(event.target)}>Clique</button>
-    </div>
+    <React.Fragment>
+      <Teste />
+      <Header />
+      <Form />
+      <Footer />
+    </React.Fragment>
   );
 };
 
