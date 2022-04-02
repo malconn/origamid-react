@@ -5,21 +5,18 @@ import Produtos from "./components/Pages/Produtos/Produtos";
 
 const App = () => {
   const pathname = window.location.pathname;
+  let Component;
   if (pathname === "/produtos") {
-    return (
-      <div>
-        <Header />
-        <Produtos />
-      </div>
-    );
+    Component = Produtos;
   } else {
-    return (
-      <div>
-        <Header />
-        <Home />
-      </div>
-    );
+    Component = Home;
   }
+  return (
+    <section>
+      <Header />
+      <Component />
+    </section>
+  );
 };
 
 export default App;

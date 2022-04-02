@@ -1,11 +1,12 @@
 import React from "react";
+import Titulo from "../../Titulo";
 
 const Home = () => {
   return (
-    <div>
-      <h3 style={{ color: "darkcyan" }}>Home</h3>
+    <section>
+      <Titulo texto="Home" />
       <p>Essa é a home do site</p>
-    </div>
+    </section>
   );
 };
 
