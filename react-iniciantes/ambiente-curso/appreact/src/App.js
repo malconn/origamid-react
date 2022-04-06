@@ -4,13 +4,10 @@ import Home from "./components/Pages/Home/Home";
 import Produtos from "./components/Pages/Produtos/Produtos";
 
 const App = () => {
-  const pathname = window.location.pathname;
+  const { pathname } = window.location;
   let Component;
-  if (pathname === "/produtos") {
-    Component = Produtos;
-  } else {
-    Component = Home;
-  }
+  const verificarPathName =
+    pathname === "/produtos" ? (Component = Produtos) : (Component = Home);
   return (
     <section>
       <Header />

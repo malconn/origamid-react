@@ -11,7 +11,7 @@ const Produtos = () => {
     <section>
       <Titulo texto="Produtos" />
       {produtos.map((produto) => (
-        <Produto key={produto.nome} {...produto} />
+        <Produto key={produto?.nome} {...produto} />
       ))}
     </section>
   );
