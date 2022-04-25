@@ -1,13 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 const App = () => {
-  const [contar,setContar] = React.useState(1);
-  const [items,setItems] = React.useState(['Item 1']);
+  const [contar,setContar] = useState(1);
+  const [items,setItems] = useState(['Item 1']);
 
   function handleClick(){
     setContar((contar)=> {
-      setItems((items)=>[...items, 'Item ' + (contar + 1)])
       return contar + 1
     })
+    setItems((items)=>[...items, 'Item ' + (contar + 1)])
   }
 
   return (
