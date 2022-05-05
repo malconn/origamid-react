@@ -7,6 +7,7 @@
 // Mostre apenas um produto por vez
 // Mostre a mensagem carregando... enquanto o fetch é realizado
 import React, { useState } from "react";
+import Produto from "./Produto";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -31,11 +32,8 @@ const App = () => {
       <button onClick={handleClick}>tablet</button>
       <button onClick={handleClick}>notebook</button>
       <button onClick={handleClick}>smartphone</button>
-      {loading && <p>Carregando...</p>}
-      {
-        <ul>
-          <li key={info?.id}>{info?.id}</li>
-        </ul>
+      {loading ? <p>Carregando...</p> :
+        <Produto key={info?.id} nome={info?.nome} descricao={info?.descricao} preco={info?.preco} />
       }
     </div>
   );
