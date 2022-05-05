@@ -9,23 +9,21 @@
 import React, { useState } from "react";
 
 const App = () => {
-  const [dados, setDados] = useState("");
-  const baseUrl = "https://ranekapi.origamid.dev/json/api/produto/";
   const [loading, setLoading] = useState(false);
+  const [info,setInfo] = useState(null);
   function handleClick(event) {
-    setDados(event.target.innerText);
-    handleApi();
+    handleApi(event.target.innerText);
   }
-  function handleApi() {
+  function handleApi(dados) {
     setLoading(true);
-    fetch(baseUrl + dados, {
+    fetch(`https://ranekapi.origamid.dev/json/api/produto/${dados}`, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setLoading(false);
-        console.log(loading);
+        setInfo(data);
       });
   }
   return (
@@ -33,7 +31,12 @@ const App = () => {
       <button onClick={handleClick}>tablet</button>
       <button onClick={handleClick}>notebook</button>
       <button onClick={handleClick}>smartphone</button>
-      {loading ? <p>Carregando...</p> : ""}
+      {loading && <p>Carregando...</p>}
+      {
+        <ul>
+          <li key={info?.id}>{info?.id}</li>
+        </ul>
+      }
     </div>
   );
 };
