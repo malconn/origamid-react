@@ -33,7 +33,7 @@ const App = () => {
       <button onClick={handleClick}>notebook</button>
       <button onClick={handleClick}>smartphone</button>
       {loading ? <p>Carregando...</p> :
-        <Produto key={info?.id} nome={info?.nome} descricao={info?.descricao} preco={info?.preco} />
+        <Produto key={info?.id} nome={info?.nome} descricao={info?.descricao} preco={info?.preco} fotos={info?.fotos} vendido={info?.vendido} usuario_id={info?.usuario_id}/>
       }
     </div>
   );
