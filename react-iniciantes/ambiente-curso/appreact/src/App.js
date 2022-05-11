@@ -11,30 +11,34 @@ import Produto from "./Produto";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [info,setInfo] = useState(null);
+  const [info, setInfo] = useState(null);
   function handleClick(event) {
     handleApi(event.target.innerText);
   }
-  function handleApi(dados) {
+  async function handleApi(dados) {
     setLoading(true);
-    fetch(`https://ranekapi.origamid.dev/json/api/produto/${dados}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setLoading(false);
-        setInfo(data);
-      });
+    const response = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${dados}`,
+      {
+        method: "GET",
+      }
+    );
+    const json = await response.json();
+    setLoading(false);
+    setInfo(json);
   }
   return (
     <div>
-      <button onClick={handleClick}>tablet</button>
-      <button onClick={handleClick}>notebook</button>
-      <button onClick={handleClick}>smartphone</button>
-      {loading ? <p>Carregando...</p> :
-        <Produto key={info?.id} nome={info?.nome} descricao={info?.descricao} preco={info?.preco} fotos={info?.fotos} vendido={info?.vendido} usuario_id={info?.usuario_id}/>
-      }
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        tablet
+      </button>
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        notebook
+      </button>
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        smartphone
+      </button>
+      {loading ? <p>Carregando...</p> : <Produto info={info} />}
     </div>
   );
 };
