@@ -9,31 +9,31 @@ import React from "react";
 import Produto from "./Produto";
 
 const App = () => {
-  const [dado,setDado] = React.useState('');
-  const [showDado,setShowDado] = React.useState('');
+  const [dado,setDado] = React.useState(null);
 
   function handleClick(event){
     event.preventDefault()
     const dadoToAPI = event.target.innerText;
     setDado(dadoToAPI)
   }
-
   React.useEffect(()=>{
-    fetch(`https://ranekapi.origamid.dev/json/api/produto/${dado}`)
-    .then((result)=> result.json())
-    .then((result)=> setShowDado(result))
+    const dadoToFecth = window.localStorage.getItem('preferencia')
+    dadoToFecth !== null && setDado(dadoToFecth)
+  },[])
+  React.useEffect(()=>{
+    dado !== null && window.localStorage.setItem('preferencia',dado)
   },[dado])
 
   return (
     <div>
-      <h1>Preferência: {showDado?.nome}</h1>
+      <h1>Preferência: {dado}</h1>
       <button style={{marginRight:'2rem',}} onClick={handleClick}>
         smartphone
       </button>
       <button onClick={handleClick}>
         notebook
       </button>
-      <Produto nome={showDado?.nome} preco={showDado?.preco}/>
+      <Produto dado={dado}/>
     </div>
   );
 };
