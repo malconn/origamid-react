@@ -1,20 +1,23 @@
-import React from 'react'
+import React from 'react';
 
 export const GlobalContext = React.createContext();
 
-export const GlobalStorage = ({children}) =>{
-  const [count,setCount] = React.useState(0);
+export const GlobalStorage = ({ children }) => {
+  const [produto, setProduto] = React.useState(null);
 
-  function adcionarUm(){
-    setCount((count)=> count + 1);
-  }
-  function adcionarDois(){
-    setCount((count)=> count + 2);
+  React.useEffect(() => {
+    fetch('https://ranekapi.origamid.dev/json/api/produto/')
+      .then((response) => response.json())
+      .then((json) => setProduto(json));
+  }, []);
+
+  function limparDados() {
+    setProduto(null);
   }
 
   return (
-    <GlobalContext.Provider value={{nome:'Malcon',count,adcionarUm}}>
+    <GlobalContext.Provider value={{ produto, setProduto, limparDados }}>
       {children}
     </GlobalContext.Provider>
-  )
-}
+  );
+};
